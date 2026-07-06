@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Buzz Production — Aspire to Inspire</title>
+<meta name="description" content="Art Buzz Production — Murang'a's leading performing arts house, specialising in live set-book performances for Junior and Senior Secondary Schools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#100c0c;
+    --ink-soft:#171112;
+    --curtain:#6e1423;
+    --curtain-dark:#3d0c14;
+    --curtain-bright:#9c1f32;
+    --gold:#c9992e;
+    --gold-soft:#e6c374;
+    --parchment:#efe6d5;
+    --parchment-dim:#c9bfa9;
+    --forest:#1f3a2e;
+    --muted:#8f8578;
+    --line: rgba(230,195,116,0.25);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    display:flex;
+    align-items:center;
+    gap:0.7em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--gold-soft);
+    display:inline-block;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,60px);}
+  section{position:relative;}
+
+  /* ---------- Curtain rope divider (signature element) ---------- */
+  .rope-divider{
+    width:100%;
+    display:block;
+    margin: 0 auto;
+  }
+  .rope-divider svg{width:100%; height:auto; display:block;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:linear-gradient(180deg, rgba(16,12,12,0.92), rgba(16,12,12,0));
+    padding:18px 0;
+    backdrop-filter:blur(2px);
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand img{width:38px; height:38px; border-radius:50%; object-fit:cover; border:1px solid var(--line);}
+  .brand-text{font-family:'Fraunces', serif; font-weight:700; font-size:1.05rem; letter-spacing:0.02em; color:var(--parchment);}
+  .brand-text small{display:block; font-family:'Space Mono', monospace; font-size:0.55rem; letter-spacing:0.22em; color:var(--gold-soft); font-weight:400; margin-top:2px;}
+  nav ul{list-style:none; display:flex; gap:clamp(14px,2vw,32px); margin:0; padding:0;}
+  nav a{
+    font-size:0.82rem; text-decoration:none; color:var(--parchment-dim);
+    letter-spacing:0.03em;
+    transition:color .25s;
+  }
+  nav a:hover{color:var(--gold-soft);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); color:var(--parchment); border-radius:6px; padding:8px 10px; font-size:1rem;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:90px;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 0%, rgba(110,20,35,0.55), transparent 65%),
+      radial-gradient(ellipse 700px 500px at 85% 90%, rgba(31,58,46,0.35), transparent 60%),
+      var(--ink);
+    overflow:hidden;
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .hero .eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 7.5vw, 5.6rem);
+    line-height:0.98;
+    color:var(--parchment);
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--gold-soft);
+  }
+  .hero p.lede{
+    max-width:52ch;
+    margin-top:26px;
+    font-size:clamp(1rem, 1.4vw, 1.18rem);
+    color:var(--parchment-dim);
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px;
+    border-radius:2px;
+    font-size:0.88rem; letter-spacing:0.03em;
+    text-decoration:none;
+    font-weight:600;
+    transition:transform .25s ease, background .25s ease, color .25s ease;
+    border:1px solid var(--gold);
+  }
+  .btn-primary{background:var(--gold); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--gold-soft);}
+  .btn-ghost{color:var(--gold-soft); background:transparent;}
+  .btn-ghost:hover{transform:translateY(-2px); background:rgba(230,195,116,0.08);}
+
+  .hero-meta{
+    margin-top:64px;
+    display:flex; gap:clamp(24px,5vw,64px); flex-wrap:wrap;
+    border-top:1px solid var(--line);
+    padding-top:26px;
+  }
+  .hero-meta div{max-width:200px;}
+  .hero-meta .num{font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-soft); font-weight:600;}
+  .hero-meta .lbl{font-size:0.78rem; color:var(--parchment-dim); margin-top:4px;}
+
+  /* ---------- SECTION LABEL / HEADS ---------- */
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.9rem); margin-top:16px; color:var(--parchment);}
+  .section-pad{padding:110px 0;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:clamp(30px,6vw,80px);
+    align-items:start;
+  }
+  .about-grid p{color:var(--parchment-dim); font-size:1.02rem; margin:0 0 18px;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .about-card{
+    border:1px solid var(--line);
+    padding:28px 30px;
+    background:linear-gradient(160deg, rgba(230,195,116,0.05), transparent 60%);
+  }
+  .about-card .k{font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.18em; color:var(--gold-soft); text-transform:uppercase;}
+  .about-card .v{font-family:'Fraunces', serif; font-size:1.15rem; margin-top:8px; margin-bottom:22px; color:var(--parchment);}
+  .about-card .v:last-child{margin-bottom:0;}
+
+  /* ---------- PROGRAMME (what we do) ---------- */
+  .programme-list{border-top:1px solid var(--line);}
+  .programme-item{
+    display:grid; grid-template-columns:80px 1fr 200px;
+    gap:20px;
+    align-items:center;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .programme-item .no{font-family:'Space Mono', monospace; color:var(--gold-soft); font-size:0.85rem;}
+  .programme-item h3{font-size:1.4rem; font-weight:500; color:var(--parchment);}
+  .programme-item .tag{font-size:0.78rem; color:var(--parchment-dim); text-align:right; font-family:'Space Mono', monospace; letter-spacing:0.05em;}
+
+  /* ---------- MISSION / VISION ---------- */
+  .mv-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line);}
+  .mv-card{background:var(--ink); padding:48px clamp(24px,4vw,56px);}
+  .mv-card .eyebrow{margin-bottom:20px;}
+  .mv-card p{font-family:'Fraunces', serif; font-style:italic; font-size:clamp(1.3rem,2.2vw,1.7rem); font-weight:500; color:var(--parchment); line-height:1.4;}
+
+  /* ---------- VALUES ---------- */
+  .values-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .value-card{
+    border:1px solid var(--line);
+    padding:30px 22px;
+    text-align:left;
+    position:relative;
+  }
+  .value-card .vn{font-family:'Space Mono', monospace; color:var(--gold-soft); font-size:0.75rem; letter-spacing:0.2em;}
+  .value-card h3{margin-top:16px; font-size:1.3rem; color:var(--parchment);}
+  .value-card p{color:var(--parchment-dim); font-size:0.92rem; margin-top:10px;}
+
+  /* ---------- CAST (playbill) ---------- */
+  .cast-block{margin-bottom:70px;}
+  .cast-block:last-child{margin-bottom:0;}
+  .ticket{
+    border:1px dashed var(--line);
+    display:inline-flex; align-items:center; gap:10px;
+    padding:6px 14px;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem; letter-spacing:0.15em;
+    color:var(--gold-soft);
+    margin-bottom:18px;
+    text-transform:uppercase;
+  }
+  .cast-photo-frame{
+    border:1px solid var(--line);
+    padding:14px;
+    background:var(--ink-soft);
+  }
+  .cast-photo-frame img{width:100%; height:auto; object-fit:cover;}
+  .cast-caption{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:18px; flex-wrap:wrap; gap:10px;
+  }
+  .cast-caption h3{font-size:1.5rem; color:var(--parchment);}
+  .cast-caption span{font-family:'Space Mono', monospace; font-size:0.75rem; color:var(--parchment-dim);}
+
+  /* ---------- FOUNDER ---------- */
+  .founder-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:clamp(30px,6vw,70px); align-items:center;}
+  .founder-photo{border:1px solid var(--line); padding:14px; background:var(--ink-soft);}
+  .founder-photo img{width:100%;}
+  .founder-copy .eyebrow{margin-bottom:18px;}
+  .founder-copy h2{font-size:clamp(1.8rem,3vw,2.5rem); margin-bottom:6px;}
+  .founder-copy .role{font-family:'Fraunces', serif; font-style:italic; color:var(--gold-soft); font-size:1.05rem; margin-bottom:22px; display:block;}
+  .founder-copy p{color:var(--parchment-dim); margin-bottom:16px;}
+  .founder-quote{
+    border-left:2px solid var(--gold);
+    padding-left:20px;
+    margin:26px 0;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--parchment);
+  }
+
+  /* ---------- CREW ---------- */
+  .crew-grid{display:grid; grid-template-columns:0.6fr 1.4fr; gap:clamp(30px,6vw,70px); align-items:center;}
+  .crew-photo{border:1px solid var(--line); padding:12px; background:var(--ink-soft); max-width:280px;}
+  .crew-photo img{width:100%;}
+
+  /* ---------- SET BOOKS ---------- */
+  .books-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+    gap:26px;
+  }
+  .book-card{display:flex; flex-direction:column;}
+  .book-cover{
+    border:1px solid var(--line);
+    background:var(--ink-soft);
+    aspect-ratio:3/4;
+    overflow:hidden;
+    padding:8px;
+  }
+  .book-cover img{width:100%; height:100%; object-fit:cover;}
+  .book-title{font-family:'Fraunces', serif; font-size:1.05rem; color:var(--parchment); margin-top:14px;}
+  .book-author{font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--parchment-dim); margin-top:4px; letter-spacing:0.03em;}
+
+  /* ---------- JOIN US ---------- */
+  .join-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,70px); align-items:start;}
+  .join-reqs{list-style:none; margin:0; padding:0; border-top:1px solid var(--line);}
+  .join-reqs li{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .join-reqs .req-icon{
+    flex:none; width:34px; height:34px;
+    border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono', monospace;
+    color:var(--gold-soft);
+    font-size:0.85rem;
+  }
+  .join-reqs h4{font-size:1.1rem; color:var(--parchment); font-weight:500; font-family:'Fraunces', serif;}
+  .join-reqs p{margin:6px 0 0; color:var(--parchment-dim); font-size:0.92rem;}
+  .join-fee{
+    margin-top:28px;
+    border:1px solid var(--gold);
+    background:rgba(230,195,116,0.06);
+    padding:22px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .join-fee .k{font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--parchment-dim);}
+  .join-fee .v{font-family:'Fraunces', serif; font-size:1.6rem; color:var(--gold-soft); font-weight:600; margin-top:4px;}
+  .join-note{font-size:0.82rem; color:var(--muted); margin-top:16px; line-height:1.6;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,70px);}
+  .contact-info .item{border-top:1px solid var(--line); padding:20px 0;}
+  .contact-info .item .k{font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.18em; color:var(--gold-soft); text-transform:uppercase;}
+  .contact-info .item .v{font-family:'Fraunces', serif; font-size:1.2rem; margin-top:6px; color:var(--parchment);}
+  .connect-links{display:flex; flex-direction:column; gap:12px; margin-top:8px;}
+  .connect-link{
+    display:flex; align-items:center; gap:14px;
+    border:1px solid var(--line);
+    padding:14px 18px;
+    text-decoration:none;
+    transition:border-color .25s, background .25s, transform .25s;
+  }
+  .connect-link:hover{border-color:var(--gold); background:rgba(230,195,116,0.06); transform:translateX(4px);}
+  .connect-link svg{width:20px; height:20px; flex:none; color:var(--gold-soft);}
+  .connect-link .cl-text{display:flex; flex-direction:column;}
+  .connect-link .cl-label{font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--parchment-dim);}
+  .connect-link .cl-value{font-family:'Fraunces', serif; font-size:1.02rem; color:var(--parchment); margin-top:2px;}
+  .connect-link.whatsapp{border-color:var(--gold); background:rgba(230,195,116,0.06);}
+  .connect-link.whatsapp .cl-value{color:var(--gold-soft); font-weight:600;}
+  form{display:flex; flex-direction:column; gap:16px;}
+  form input, form textarea{
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--parchment);
+    font-family:'Inter', sans-serif;
+    font-size:0.95rem;
+    padding:12px 4px;
+    outline:none;
+    transition:border-color .25s;
+  }
+  form input::placeholder, form textarea::placeholder{color:var(--muted);}
+  form input:focus, form textarea:focus{border-color:var(--gold);}
+  form button{
+    align-self:flex-start;
+    margin-top:10px;
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    padding:14px 30px;
+    font-weight:600;
+    font-size:0.88rem;
+    letter-spacing:0.03em;
+    cursor:pointer;
+    border-radius:2px;
+    transition:background .25s, transform .25s;
+  }
+  form button:hover{background:var(--gold-soft); transform:translateY(-2px);}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .fbrand{display:flex; align-items:center; gap:12px;}
+  footer .fbrand img{width:32px; height:32px; border-radius:50%; object-fit:cover;}
+  footer p{margin:0; font-size:0.78rem; color:var(--muted);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--gold-soft); outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn, form button{transition:none;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .about-grid, .founder-grid, .crew-grid, .contact-grid, .join-grid{grid-template-columns:1fr;}
+    .mv-grid{grid-template-columns:1fr;}
+    .values-grid{grid-template-columns:1fr 1fr;}
+    .programme-item{grid-template-columns:50px 1fr; row-gap:6px;}
+    .programme-item .tag{grid-column:2/3; text-align:left;}
+    nav{display:none;}
+    .nav-toggle{display:inline-block;}
+    .crew-photo{max-width:220px;}
+  }
+  @media (max-width: 560px){
+    .values-grid{grid-template-columns:1fr;}
+    .section-pad{padding:80px 0;}
+    .hero-meta{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="images/logo.jpeg" alt="Art Buzz Production logo">
+      <span class="brand-text">Art Buzz Production<small>Aspire to Inspire</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programme">What We Do</a></li>
+        <li><a href="#setbooks">Set Books</a></li>
+        <li><a href="#values">Values</a></li>
+        <li><a href="#cast">The Cast</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#join">Join Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Murang'a · Performing Arts House</p>
+      <h1>Aspire to inspire the <em>generational</em> talent within.</h1>
+      <p class="lede">Art Buzz Production brings set-book literature off the page and onto the stage — poetry, script writing, plays, stand-up comedy and spoken word, performed for Junior and Senior Secondary Schools across Murang'a.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#cast">Meet the Company</a>
+        <a class="btn btn-ghost" href="#contact">Book a Performance</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <div class="num">01</div>
+          <div class="lbl">First Set-Book production house established in Murang'a</div>
+        </div>
+        <div>
+          <div class="num">MoE</div>
+          <div class="lbl">Operating under the Ministry of Education &amp; TSC Code of Conduct</div>
+        </div>
+        <div>
+          <div class="num">JSS–SSS</div>
+          <div class="lbl">Performances staged from Junior to Senior Secondary level</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rope-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 Q300,45 600,20 T1200,20" fill="none" stroke="#c9992e" stroke-width="1.5" opacity="0.55"/></svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Production</p>
+        <h2>A stage for Murang'a's set books.</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Art Buzz Production is a prolific environment filled with visionaries holding holistic potential across the performing arts — poetry, live stage performances, script writing, plays, stand-up comedy, spoken word and more.</p>
+          <p>Based in Murang'a, the production specialises in live performances of set books, staged for audiences from Junior Secondary Schools right through to Senior Secondary Schools — turning the literature on the syllabus into performance students remember.</p>
+          <p>Art Buzz Production has become a source of inspiration to youth within the vicinity of Murang'a University of Technology, and to university students and the wider community at large.</p>
+        </div>
+        <div class="about-card">
+          <div class="k">Jurisdiction</div>
+          <div class="v">Operating under the Ministry of Education to enhance education in schools.</div>
+          <div class="k">Conduct</div>
+          <div class="v">Governed by the Constitution and the TSC Code of Conduct.</div>
+          <div class="k">Home</div>
+          <div class="v">Murang'a, Kenya.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME / WHAT WE DO -->
+  <section id="programme" class="section-pad" style="background:var(--ink-soft);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">On the Programme</p>
+        <h2>Every form the stage allows.</h2>
+      </div>
+      <div class="programme-list">
+        <div class="programme-item"><span class="no">01</span><h3>Set-Book Live Performances</h3><span class="tag">JSS – SSS</span></div>
+        <div class="programme-item"><span class="no">02</span><h3>Poetry &amp; Spoken Word</h3><span class="tag">Stage &amp; Schools</span></div>
+        <div class="programme-item"><span class="no">03</span><h3>Script Writing</h3><span class="tag">Original Works</span></div>
+        <div class="programme-item"><span class="no">04</span><h3>Plays &amp; Theatre</h3><span class="tag">Full Productions</span></div>
+        <div class="programme-item"><span class="no">05</span><h3>Stand-Up Comedy</h3><span class="tag">Live Sets</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SET BOOKS -->
+  <section id="setbooks" class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">On Stage This Season</p>
+        <h2>The set books we perform.</h2>
+      </div>
+      <!-- EDIT-ME: swap in your real set book cover photos (images/books/...) and titles/authors below -->
+      <div class="books-grid">
+        <div class="book-card">
+          <div class="book-cover"><img src="images/fathers.png" alt="Cover of Fathers "></div>
+          <div class="book-title">Fathers of Nations</div>
+          <div class="book-author">Paul B. Vitta</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/samaritan.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">The Samaritan</div>
+          <div class="book-author">John Lara</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/Silent.png" alt="Cover of Silent Song and other stories"></div>
+          <div class="book-title">Silent  song  and other stories</div>
+          <div class="book-author">Godwin  SIunda</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/bembea.png" alt="Cover of Bembea ya Maisha"></div>
+          <div class="book-title">Bembea ya Maisha</div>
+          <div class="book-author">Timothy M. Agere</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/nguu.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Nguu za Jadi</div>
+          <div class="book-author">Clara Momanyi</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/mapambazuko.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Mapambazuko  ya  Machweo na hadithi nyingine</div>
+          <div class="book-author">D. W. Lutomia and Phibbian Muthama</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/hidaya.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Hidaya</div>
+          <div class="book-author">Juma Namlola Mohamed</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/laugh.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">TheLast Laugh</div>
+          <div class="book-author">K. R. Alexander</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/strange.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Stranger Happenings</div>
+          <div class="book-author">Joan Aiken</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/mshale.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Mshale wa Matumaini</div>
+          <div class="book-author">John Habwe</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/rivers.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Bridges Without Rivers</div>
+          <div class="book-author">Timothy M. Agere</div>
+        </div>
+        <div class="book-card">
+          <div class="book-cover"><img src="images/wema.png" alt="Cover of the samaritan"></div>
+          <div class="book-title">Wema Hauozi</div>
+          <div class="book-author">Timothy M. Arege</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION -->
+  <section class="section-pad" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <p class="eyebrow">Mission</p>
+          <p>Aspire to inspire generational talents — helping them explore the traces of potential within them in the field of performing arts.</p>
+        </div>
+        <div class="mv-card">
+          <p class="eyebrow">Vision</p>
+          <p>To empower future generations to embrace art within society.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values" class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Core Values</p>
+        <h2>What holds the company together.</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><span class="vn">I.</span><h3>Integrity</h3><p>Honesty on and off the stage, in every rehearsal and performance.</p></div>
+        <div class="value-card"><span class="vn">II.</span><h3>Discipline</h3><p>The rigour that turns a script into a production worth watching.</p></div>
+        <div class="value-card"><span class="vn">III.</span><h3>Respect</h3><p>For the craft, the classroom, and every voice in the room.</p></div>
+        <div class="value-card"><span class="vn">IV.</span><h3>Teamwork</h3><p>No performance stands on one talent alone — the company moves together.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rope-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 Q300,-5 600,20 T1200,20" fill="none" stroke="#c9992e" stroke-width="1.5" opacity="0.55"/></svg>
+  </div>
+
+  <!-- CAST -->
+  <section id="cast" class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Company</p>
+        <h2>Faces of Art Buzz Production.</h2>
+      </div>
+
+      <div class="cast-block">
+        <span class="ticket">Ensemble · Company Men</span>
+        <div class="cast-photo-frame">
+          <img src="images/men.jpeg" alt="Male ensemble members of Art Buzz Production in formal attire">
+        </div>
+        <div class="cast-caption">
+          <h3>The Men of the Company</h3>
+          <span>Photography by @K_Pixels</span>
+        </div>
+      </div>
+
+      <div class="cast-block">
+        <span class="ticket">Ensemble · Company Women</span>
+        <div class="cast-photo-frame">
+          <img src="images/women.jpeg" alt="Female ensemble members of Art Buzz Production">
+        </div>
+        <div class="cast-caption">
+          <h3>The Women of the Company</h3>
+          <span>Photography by @K_Pixels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder" class="section-pad" style="background:var(--ink-soft);">
+    <div class="wrap">
+      <div class="founder-grid">
+        <div class="founder-photo">
+          <img src="images/allan.jpeg" alt="Allan Wafula, Executive Producer of Art Buzz Production">
+        </div>
+        <div class="founder-copy">
+          <p class="eyebrow">Executive Producer</p>
+          <h2>Allan Wafula</h2>
+          <span class="role">Known to Murang'a as "Pro Wafula"</span>
+          <p>Allan Wafula owns and produces Art Buzz Production. A visionary who brought life to art in Murang'a, he left a lasting impression as the first to introduce Set-Book productions to the region.</p>
+          <div class="founder-quote">"Aspire to inspire generational talents."</div>
+          <p>Under his direction, Art Buzz Production continues to give young people in and around Murang'a University of Technology a stage to discover what performing arts can be.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Director -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="crew-grid">
+        <div class="crew-photo">
+          <img src="images/marcello.jpeg" alt="Art Buzz Production crew member">
+        </div>
+        <div>
+          <p class="eyebrow">Director</p>
+          <h2>Marcello Albert</h2>
+          <h2 style="font-size:clamp(1.6rem,2.6vw,2.1rem); margin-top:14px; margin-bottom:16px;">Leading with vision and creativity.</h2>
+          <p style="color:var(--parchment-dim); max-width:56ch;">Our Director provides the creative vision and strategic leadership that shapes every production. Through passion, innovation, and dedication, every performance is guided to inspire audiences and showcase the exceptional talent of Art Buzz Production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rope-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 Q300,45 600,20 T1200,20" fill="none" stroke="#c9992e" stroke-width="1.5" opacity="0.55"/></svg>
+  </div>
+
+  <!-- JOIN US -->
+  <section id="join" class="section-pad" style="background:var(--ink-soft);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Join the Company</p>
+        <h2>Take your place on stage.</h2>
+      </div>
+      <div class="join-grid">
+        <div>
+          <ul class="join-reqs">
+            <li>
+              <span class="req-icon">18+</span>
+              <div>
+                <h4>Aged 18 or above</h4>
+                <p>Open to adults only — applicants must be 18 years of age or older.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1.5"/><circle cx="12" cy="10" r="3"/><path d="M7 17c1-2 3-3 5-3s4 1 5 3"/></svg>
+              </span>
+               <div>
+                <h4>Fluent in English &amp; Kiswahili</h4>
+                <p>Applicants must be able to perform confidently in both English and Kiswahili.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1.5"/><circle cx="12" cy="10" r="3"/><path d="M7 17c1-2 3-3 5-3s4 1 5 3"/></svg>
+              </span>
+              <div>
+                <h4>A recent passport photo</h4>
+                <p>One clear, recent passport-size photo is required with every application.</p>
+              </div>
+            </li>
+            <li>
+              <span class="req-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+              </span>
+              <div>
+                <h4>Registration fee</h4>
+                <p>A one-time fee secures your place in the Company for the season.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="join-fee">
+            <div>
+              <div class="k">Registration Fee</div>
+              <div class="v">KES 500</div>
+            </div>
+            <!-- EDIT-ME: replace with your real M-Pesa Paybill / Till number -->
+            
+          </div>
+          <p class="join-note">Send your application below — we'll reply on WhatsApp with next steps. Please have your passport photo ready to attach in the chat, and keep your M-Pesa confirmation message for reference.</p>
+        </div>
+
+        <form id="join-form">
+          <input type="text" name="name" placeholder="Full name" required>
+          <input type="number" name="age" placeholder="Age" min="18" required>
+          <input type="tel" name="phone" placeholder="Phone number" required>
+          <input type="text" name="talent" placeholder="Area of interest (e.g. poetry, stand-up, acting)">
+          <textarea rows="3" name="note" placeholder="Anything else we should know?"></textarea>
+          <button type="submit">Apply to Join via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-pad">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Get in Touch</p>
+        <h2>Bring the set book to your school.</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="item"><div class="k">Location</div><div class="v">Murang'a, Kenya</div></div>
+          <div class="item"><div class="k">Operates under</div><div class="v">Ministry of Education &amp; TSC Code of Conduct</div></div>
+
+          <!-- EDIT-ME: replace the phone number, email, and handles below with the real ones -->
+          <div class="connect-links">
+            <a class="connect-link whatsapp" href="https://wa.me/254758723529?text=Hello%20Art%20Buzz%20Production%2C%20I%27d%20like%20to%20enquire%20about%20a%20performance" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24a8.2 8.2 0 0 1 5.83 2.42 8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.15-.24-.02-.37.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.24-.86.85-.86 2.06 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.15-1.19-.07-.11-.24-.17-.5-.29z"/></svg>
+              <span class="cl-text"><span class="cl-label">Chat on WhatsApp</span><span class="cl-value">+254 758 723 529</span></span>
+            </a>
+            <a class="connect-link whatsapp" href="https://wa.me/254114989395?text=Hello%20Art%20Buzz%20Production%2C%20I%27d%20like%20to%20enquire%20about%20a%20performance" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24a8.2 8.2 0 0 1 5.83 2.42 8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.15.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.15-.24-.02-.37.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.24-.86.85-.86 2.06 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.15-1.19-.07-.11-.24-.17-.5-.29z"/></svg>
+              <span class="cl-text"><span class="cl-label">Chat on WhatsApp</span><span class="cl-value">+254 114 989 395</span></span>
+            </a>
+            <a class="connect-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=artbuzzproductions@gmail.com" target="_blank" rel="noopener noreferrer">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+               <span class="cl-text"><span class="cl-label">Email</span><span class="cl-value">artbuzzproductions@gmail.com</span></span>
+            </a>
+            <a class="connect-link" href="https://www.instagram.com/art_buzz_productions021" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+              <span class="cl-text"><span class="cl-label">Instagram</span><span class="cl-value">@artbuzzproduction</span></span>
+            </a>
+            <a class="connect-link" href="https://www.tiktok.com/@art.buzz.producti?_r=1&_t=ZS-97nxncQJb65" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.35 2.14 1.9 3.83 4.15 4.13v2.6c-1.5-.06-2.83-.53-4.02-1.34v6.42c0 3.24-2.35 5.9-5.66 5.9-3.03 0-5.5-2.35-5.5-5.63 0-3.18 2.36-5.7 5.4-5.7.3 0 .6.02.88.07v2.7a2.9 2.9 0 0 0-.88-.14 3 3 0 0 0-2.98 3.02c0 1.68 1.32 3.03 2.98 3.03 1.78 0 3.13-1.4 3.13-3.16V3h2.5z"/></svg>
+              <span class="cl-text"><span class="cl-label">TikTok</span><span class="cl-value">@artbuzzproductions</span></span>
+            </a>
+          </div>
+
+          <div class="item" style="margin-top:6px;"><div class="k">Executive Producer</div><div class="v">Allan "Pro Wafula" Wafula</div></div>
+        </div>
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="text" name="org" placeholder="School / Organisation">
+          <input type="email" name="email" placeholder="Email address" required>
+          <textarea rows="4" name="message" placeholder="Tell us which set book you'd like performed"></textarea>
+          <button type="submit">Send via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">
+      <img src="images/logo.jpeg" alt="Art Buzz Production logo">
+      <p>Art Buzz Production · Murang'a · Aspire to Inspire</p>
+    </div>
+    <p>&copy; 2026 Art Buzz Production. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // EDIT-ME: keep this in sync with the WhatsApp number used in the Connect panel above
+  const WHATSAPP_NUMBER = '254758723529';
+
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const name = (data.get('name') || '').trim();
+    const org = (data.get('org') || '').trim();
+    const email = (data.get('email') || '').trim();
+    const message = (data.get('message') || '').trim();
+
+    let text = `Hello Art Buzz Production, my name is ${name}.`;
+    if (org) text += ` I'm reaching out on behalf of ${org}.`;
+    if (message) text += ` ${message}.`;
+    if (email) text += ` You can reach me at ${email}.`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    contactForm.reset();
+  });
+
+  const joinForm = document.getElementById('join-form');
+  joinForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(joinForm);
+    const name = (data.get('name') || '').trim();
+    const age = (data.get('age') || '').trim();
+    const phone = (data.get('phone') || '').trim();
+    const talent = (data.get('talent') || '').trim();
+    const note = (data.get('note') || '').trim();
+
+    let text = `Hello Art Buzz Production, I'd like to apply to join the Company.`;
+    text += ` My name is ${name}, age ${age}, phone ${phone}.`;
+    if (talent) text += ` I'm interested in ${talent}.`;
+    if (note) text += ` ${note}.`;
+    text += ` I understand membership requires being 18+, a passport photo, and the KES 200 registration fee — I will attach my passport photo and payment confirmation here.`;
+
+    const url2 = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url2, '_blank');
+    joinForm.reset();
+  });
+</script>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('nav');
+  toggle.addEventListener('click', () => {
+    const open = nav.style.display === 'block';
+    nav.style.display = open ? 'none' : 'block';
+    if(!open){
+      nav.style.position='fixed';
+      nav.style.top='70px';
+      nav.style.left='0';
+      nav.style.right='0';
+      nav.style.background='var(--ink)';
+      nav.style.padding='20px';
+      nav.style.borderTop='1px solid var(--line)';
+      const ul = nav.querySelector('ul');
+      ul.style.flexDirection='column';
+      ul.style.gap='18px';
+    }
+  });
+</script>
+
+<!-- QR Scanner -->
+<div id="qrScanner" class="scanner-modal">
+    <div class="scanner-box">
+        <button id="closeScanner">✖</button>
+
+        <h2>Scan QR Code</h2>
+
+        <div id="reader"></div>
+
+        <p id="scanResult">Waiting for QR Code...</p>
+    </div>
+</div>
+</body>
+</html>
